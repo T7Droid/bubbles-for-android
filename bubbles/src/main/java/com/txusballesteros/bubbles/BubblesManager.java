@@ -78,7 +78,7 @@ public class BubblesManager {
     }
 
     public void recycle() {
-        context.unbindService(bubbleServiceConnection);
+        //context.unbindService(bubbleServiceConnection);
     }
 
     public void addBubble(BubbleLayout bubble, int x, int y) {
