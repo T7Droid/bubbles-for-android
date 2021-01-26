@@ -41,13 +41,17 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BubblesService extends Service {
+public class BubblesService extends Service, Intent {
     private BubblesServiceBinder binder = new BubblesServiceBinder();
     private List<BubbleLayout> bubbles = new ArrayList<>();
     private BubbleTrashLayout bubblesTrash;
     private WindowManager windowManager;
     private BubblesLayoutCoordinator layoutCoordinator;
 
+    
+     public BubblesService(){
+         super("BubblesService);
+               }
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
@@ -55,13 +59,18 @@ public class BubblesService extends Service {
 
     @Override
     public boolean onUnbind(Intent intent) {
-        for (BubbleLayout bubble : bubbles) {
-            recycleBubble(bubble);
+       // for (BubbleLayout bubble : bubbles) {
+         //   recycleBubble(bubble);
         }
-        bubbles.clear();
+       // bubbles.clear();
         return super.onUnbind(intent);
     }
 
+               @Override
+               protected void onHandleIntent(Intent intent){
+                   
+               }
+               
     private void recycleBubble(final BubbleLayout bubble) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
